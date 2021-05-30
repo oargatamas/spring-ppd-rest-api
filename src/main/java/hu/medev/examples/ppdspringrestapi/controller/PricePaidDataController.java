@@ -4,6 +4,7 @@ import hu.medev.examples.ppdspringrestapi.model.paging.PagingDetails;
 import hu.medev.examples.ppdspringrestapi.model.paging.PagingPricePaidData;
 import hu.medev.examples.ppdspringrestapi.model.pdd.PricePaidDataRecord;
 import hu.medev.examples.ppdspringrestapi.service.PricePaidDataService;
+import io.swagger.annotations.Api;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+@Api(tags = "PricePaidData API")
 @RestController()
 @RequestMapping(path = "/ppd")
 public class PricePaidDataController {
