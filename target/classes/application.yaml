@@ -4,6 +4,7 @@ spring:
 server:
   port: 8080
 data:
+  dateFormat: "yyyy-MM-dd'T'HH:mm:ss"
   ppd:
     pageSize: 100
     url: "http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com"
