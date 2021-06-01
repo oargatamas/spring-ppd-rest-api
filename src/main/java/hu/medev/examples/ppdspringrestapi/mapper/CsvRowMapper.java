@@ -16,7 +16,7 @@ public class CsvRowMapper {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
         return PricePaidDataRecordBuilder.aPricePaidDataRecord()
-                .withTransactionUniqueIdentifier(csvRow[0])
+                .withTransactionUniqueIdentifier(csvRow[0].replaceAll("[{}]", ""))
                 .withPrice(new BigDecimal(csvRow[1]))
                 .withDateOfTransfer(LocalDateTime.parse(csvRow[2],formatter))
                 .withPostcode(csvRow[3])

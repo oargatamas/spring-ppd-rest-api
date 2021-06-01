@@ -1,13 +1,10 @@
 spring:
   application:
     name: PricePaidDataApplication
-server:
-  port: 8080
 data:
   dateFormat: "yyyy-MM-dd'T'HH:mm:ss"
   ppd:
-    pageSize: 100
+    pageSize: 1001
     url: "http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com"
     latestFileName: "pp-monthly-update-new-version.csv"
     localUri: "file:///Users/oarga/Downloads/pp-complete.csv"
-

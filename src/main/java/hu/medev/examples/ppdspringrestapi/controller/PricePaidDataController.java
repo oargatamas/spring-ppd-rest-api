@@ -57,7 +57,7 @@ public class PricePaidDataController {
             @RequestParam Optional<Integer> pageNo
     ){
 
-        if(from.compareTo(until) <= 0){
+        if(from.compareTo(until) >= 0){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid date range provided");
         }
 
@@ -68,7 +68,7 @@ public class PricePaidDataController {
 
     private Link createPpdSelfRelation(PricePaidDataRecord record){
         return linkTo(methodOn(PricePaidDataController.class)
-                .getPriceDataRecordById(record.getTransactionUniqueIdentifier().replaceAll("\\p{P}","")))
+                .getPriceDataRecordById(record.getTransactionUniqueIdentifier()))
                 .withSelfRel();
     }
 
