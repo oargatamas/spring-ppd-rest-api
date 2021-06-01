@@ -22,10 +22,19 @@ when a date time range is provided
 This section is aiming to describing the technical analysis of the task. 
  
 ### Discovery of the source data
-Data of House Price Paid records are available in CSV format. After review the attached raw data link I have collected  
+Data of House Price Paid records are available in CSV format. From the www.gov.uk we can download the following data:
+
+- Current Monthly subset of PPD ( [link](http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com/pp-monthly-update-new-version.csv) )
+- Full year PPD (e.g: 2021 -> [link](http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com/pp-2021.csv) )
+- Half year of PPD data ( e.g: 2021 part1 -> [link](http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com/pp-2021-part1.csv) )
+- All the registered PPD data since 2018 ( [link](http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com/pp-complete.csv) )
+
+The CSV record field descriptions are available here: https://www.gov.uk/guidance/about-the-price-paid-data?fbclid=IwAR0FxqBOGDmWEYAF4vb106jzuKyKroj419qMkx_YFcmo4MHhn-aP_Nbvdnk
 
 ### CSV handling
 
+The available CSV files above are huge, therefore handling them and exposing in REST API required some advanced technical skills.
+In this implementation I have solved the CSV handling by evaluating records one by one via Java Streams, and used API response paging described in Paging & HATEOAS section.
 
 ## Usage of the PPD API
 
@@ -209,5 +218,7 @@ Size of the pages is 100 record by default, but it you can override via the ```d
 
 - [ ] Repository change wiring to application property
 - [ ] Debug logging
+- [ ] Maintaining current number of records on CSV
 - [ ] Extend with ETL application (via Spring Batch) to keep the filesystem CSV up to date
 - [ ] Implement API security (OAuth Client Credentials and/or API-Key & Secret)
+- [ ] Implement indexing feature to decrease random access response time
