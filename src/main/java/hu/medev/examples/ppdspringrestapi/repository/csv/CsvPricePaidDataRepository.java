@@ -21,8 +21,9 @@ public abstract class CsvPricePaidDataRepository implements PricePaidDataReposit
 
     @Override
     public PricePaidDataRecord findRecordById(String transactionId) {
-        return getRecords(line -> line[0].equals("{" + transactionId + "}"),0,1)
-                .get(0);
+        List<PricePaidDataRecord> result = getRecords(line -> line[0].equals("{" + transactionId + "}"),0,1);
+
+        return result.size() > 0 ? result.get(0) : null;
     }
 
     @Override
