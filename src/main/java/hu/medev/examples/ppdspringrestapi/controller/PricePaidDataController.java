@@ -76,13 +76,13 @@ public class PricePaidDataController {
         PagingDetails paging = pagingData.getPagingDetails();
 
         if(paging.isHasPrevPage()) {
-            pagingData.add(linkTo(methodOn(PricePaidDataController.class)
+            paging.add(linkTo(methodOn(PricePaidDataController.class)
                     .getAllPricePaidData(Optional.of(paging.getPageNumber() - 1)))
                     .withRel("prevPage"));
         }
 
         if(paging.isHasNextPage()) {
-            pagingData.add(linkTo(methodOn(PricePaidDataController.class)
+            paging.add(linkTo(methodOn(PricePaidDataController.class)
                     .getAllPricePaidData(Optional.of(paging.getPageNumber() + 1)))
                     .withRel("nextPage"));
         }
