@@ -17,7 +17,7 @@ import java.util.Optional;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@Api(tags = "PricePaidData API")
+@Api(tags = "House Price Paid Data API")
 @RestController()
 @RequestMapping(path = "/ppd")
 public class PricePaidDataController {

@@ -1,7 +1,7 @@
 package hu.medev.examples.ppdspringrestapi;
 
 import hu.medev.examples.ppdspringrestapi.repository.PricePaidDataRepository;
-import hu.medev.examples.ppdspringrestapi.repository.csv.FileSystemCachedCsvPricePaidDataRepository;
+import hu.medev.examples.ppdspringrestapi.repository.csv.RealTimeCsvPricePaidDataRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +19,8 @@ public class PpdSpringRestApiApplication {
 
     @Bean
     public PricePaidDataRepository dataRepository(){
-        //return new RealTimeCsvPricePaidDataRepository();
-        return new FileSystemCachedCsvPricePaidDataRepository();
+        return new RealTimeCsvPricePaidDataRepository();
+        //return new FileSystemCachedCsvPricePaidDataRepository();
     }
 
     @Bean
