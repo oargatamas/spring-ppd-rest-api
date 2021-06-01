@@ -10,8 +10,11 @@
 	</parent>
 	<groupId>hu.medev.examples</groupId>
 	<artifactId>ppd-spring-rest-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-RELEASE</version>
+
 	<name>ppd-spring-rest-api</name>
+	<packaging>jar</packaging>
+
 	<description>Sample Spring Boot project for a Price Paid Data REST API</description>
 	<properties>
 		<java.version>11</java.version>
