@@ -29,6 +29,8 @@ Data of House Price Paid records are available in CSV format. After review the a
 
 ## Usage of the PPD API
 
+Swagger and Swagger UI also implemented in the API and available under ``` http://<host>:<port>/swagger-ui/ ```
+
 ### Build
 
 After cloning this repository you can build the application the same way as a regular maven project.
@@ -109,14 +111,19 @@ Based on the source data analysis I have provided two different backend approach
 ### Paging & HATEOAS
 
 The CSV database is too big to serve the whole content on the endpoint in one HTTP response. To solve this issue, the API is using giving back only a subset of the CSV (pages) and providing links to the next and previous subsets.
-This is behaviour is called paging in this terminology. The paging implementation follows the HATEOAS principles. For example requesting the all records will give you the following result:
+This is behaviour is called paging in this terminology. The paging implementation follows the HATEOAS principles. In advance every PPD record contains links to itself, which can be useful to create reactive frontend for the API. For example requesting the all records will give you the following result:
 
 ```json
 {
     "pagingDetails": {
         "pageNumber": 1,
         "startRecord": 1,
-        "endRecord": 2
+        "endRecord": 3,
+        "_links": {
+            "nextPage": {
+                "href": "http://localhost:8080/ppd/?pageNo=2"
+            }
+        }
     },
     "pricePaidData": [
         {
@@ -164,15 +171,43 @@ This is behaviour is called paging in this terminology. The paging implementatio
                     "href": "http://localhost:8080/ppd/20E2441A-0F16-49AB-97D4-8737E62A5D93"
                 }
             }
+        },
+        {
+            "transactionUniqueIdentifier": "F9F753A8-E56A-4ECC-9927-8E626A471A92",
+            "price": 43500,
+            "dateOfTransfer": "1995-11-14T00:00:00",
+            "postcode": "TS23 3LA",
+            "propertyType": "S",
+            "oldNew": false,
+            "duration": "F",
+            "paon": "19",
+            "saon": "",
+            "street": "SLEDMERE CLOSE",
+            "locality": "BILLINGHAM",
+            "city": "BILLINGHAM",
+            "district": "STOCKTON-ON-TEES",
+            "county": "STOCKTON-ON-TEES",
+            "ppdCategory": "A",
+            "recordStatus": "A",
+            "_links": {
+                "self": {
+                    "href": "http://localhost:8080/ppd/F9F753A8-E56A-4ECC-9927-8E626A471A92"
+                }
+            }
         }
-    ],
-    "_links": {
-        "nextPage": {
-            "href": "http://localhost:8080/ppd/?pageNo=2"
-        }
-    }
+    ]
 }
 ```
+
+Size of the pages is 100 record by default, but it you can override via the ```data.ppd.pageSize ``` application property like this:
+```
+   java -jar ppd-spring-rest-api-1.0.0-RELEASE.jar --data.ppd.pageSize=<size_of_your_choice>
+```
+
     
 ### Future improvements
 
+- [ ] Repository change wiring to application property
+- [ ] Debug logging
+- [ ] Extend with ETL application (via Spring Batch) to keep the filesystem CSV up to date
+- [ ] Implement API security (OAuth Client Credentials and/or API-Key & Secret)
