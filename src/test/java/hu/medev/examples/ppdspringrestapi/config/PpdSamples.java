@@ -26,12 +26,12 @@ public class PpdSamples {
 
     @Bean(name = SAMPLES_ALL)
     public List<PricePaidDataRecord> sampleRecords() throws Exception {
-        return readCsvSamples("samples_all.csv");
+        return readCsvSamples("samples/samples_all.csv");
     }
 
     @Bean(name = SAMPLES_DATE_FILTERED)
     public List<PricePaidDataRecord> sampleRecordsFilteredByDate() throws Exception {
-        return readCsvSamples("samples_date_filtered.csv");
+        return readCsvSamples("samples/samples_date_filtered.csv");
     }
 
     public static List<PricePaidDataRecord> readCsvSamples(String fileName) throws Exception {
