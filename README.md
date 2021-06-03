@@ -101,7 +101,7 @@ Based on the source data analysis I have provided two different backend approach
    java -jar ppd-spring-rest-api-1.0.0-RELEASE.jar --data.ppd.localUri=<path_to_csv_file>
    ```
    With this repository you can download and store all the PPD data available at www.gov.uk.
-   To use Real-Time repository to have to set up the ```PricePaidDataRepository``` Bean like this:
+   To use File system cached repository to have to set up the ```PricePaidDataRepository``` Bean like this:
    ```java
    @SpringBootApplication
    public class PpdSpringRestApiApplication {
